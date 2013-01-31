@@ -3,14 +3,14 @@
 
      <Button
         android:layout_gravity="left"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/persons"
         android:text="@string/nrOfGuests" />
      
      <Button
         android:layout_gravity="right"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/list"
         android:text="@string/cost" />
