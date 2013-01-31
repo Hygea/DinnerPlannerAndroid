@@ -1,15 +1,23 @@
 package se.kth.csc.iprog.dinnerplanner;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ListView;
 
 public class ChooseDish extends Activity {
-
+	ListView listDishes;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
+		
+		
+		ListView listView = (ListView) findViewById(R.id.);
+		String[] values = new String[] { "Mat1", "Mat2", "Mat3" };
+		
+		
 	}
 
 	@Override
@@ -18,5 +26,9 @@ public class ChooseDish extends Activity {
 		getMenuInflater().inflate(R.menu.activity_choose_dish, menu);
 		return true;
 	}
+	
+	
+	
+	
 
 }
