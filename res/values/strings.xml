@@ -9,5 +9,7 @@
     <string name="sell">The ultimate application for planning your dinnerparty!</string>
     <string name="newDinnerButton">Create a new dinner</string>
     <string name="mainImageDescription">MainImage</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 
 </resources>
