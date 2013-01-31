@@ -11,5 +11,7 @@
     <string name="mainImageDescription">MainImage</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="nrOfGuests">10</string>
+    <string name="cost">$0.00</string>
 
 </resources>
