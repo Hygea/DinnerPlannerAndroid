@@ -9,12 +9,12 @@ public class ChooseDish extends Activity {
 	ListView listDishes;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
 		
 		
-		ListView listView = (ListView) findViewById(R.id.);
+		listDishes = (ListView) findViewById(R.id.imageView1);
 		String[] values = new String[] { "Mat1", "Mat2", "Mat3" };
 		
 		

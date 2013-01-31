@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -6,11 +5,14 @@
     tools:context=".ChooseDish" >
 	
     <!-- HEADER -->
-    <include android:id="@+id/top_header"
-        android:layout_alignParentTop="true" layout="@layout/header" />
+    <LinearLayout android:id="@+id/top_header"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"         
+        android:orientation="vertical" android:layout_alignParentTop="true">
+    <include layout="@layout/header" />
+    </LinearLayout>
 	
     <!-- FOOTER -->
-    <LinearLayout android:id="@+id/bottom_menu"
+    <LinearLayout android:id="@+id/bottom_footer"
         android:layout_width="fill_parent" android:layout_height="wrap_content"         
         android:orientation="vertical" android:layout_alignParentBottom="true">
         <!-- menu bar -->
@@ -20,14 +22,16 @@
     <!-- CONTENT -->
     <LinearLayout android:orientation="vertical"
         android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:layout_below="@id/top_header" android:layout_above="@id/bottom_menu"
+        android:layout_below="@id/top_header" android:layout_above="@id/bottom_footer"
         android:layout_weight="1"
         android:id="@+id/contentview"
         android:paddingBottom="5sp" android:background="#EAEAEA">
+
         <ListView
-	        android:id="@+id/listDishes"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content" >
+            android:id="@+id/list_dishes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
     	</ListView>
     </LinearLayout>
 </RelativeLayout>

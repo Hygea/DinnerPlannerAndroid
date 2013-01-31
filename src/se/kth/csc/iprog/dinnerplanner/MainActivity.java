@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 		
 		//To get the dinner model you can use the following code:
 		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+	
 		
 	}
 
