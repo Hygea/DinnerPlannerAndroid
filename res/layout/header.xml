@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout02" 
     android:layout_height="wrap_content" 
     android:layout_width="fill_parent" 
     android:layout_alignParentBottom="true">
 
     <Button
-        android:layout_gravity="left"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/persons"
         android:text="@string/nrOfGuests" />
-     
+
      <Button
-        android:layout_gravity="right"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/list"
-        android:text="@string/cost" />
-</LinearLayout>
-     
-    
-</merge>
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:drawableLeft="@drawable/list"
+         android:text="@string/cost" />
+
+</RelativeLayout>
