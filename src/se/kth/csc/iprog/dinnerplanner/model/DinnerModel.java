@@ -2,8 +2,47 @@ package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import se.kth.csc.iprog.dinnerplanner.Menu;
 
-public class DinnerModel {
+public class DinnerModel implements IDinnerModel {
+	
+	public int getNumberOfGuests(Menu menu){
+		int number = menu.numberOfGuests;
+		return number;
+	};
+	
+	public void setNumberOfGuests(int numberOfGuests){
+		
+	};
+	
+	/**
+	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
+	 */
+	public Dish getSelectedDish(int type){
+		
+	};
+	
+	/**
+	 * Returns all the dishes on the menu.
+	 */
+	public Set<Dish> getFullMenu(){
+		
+	};
+	
+	/**
+	 * Returns all ingredients for all the dishes on the menu.
+	 */
+	public Set<Ingredient> getAllIngredients(){
+		
+	};
+	
+	/**
+	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
+	 */
+	public float getTotalMenuPrice(){
+		
+	};
+
 	
 
 	Set<Dish> dishes = new HashSet<Dish>();
