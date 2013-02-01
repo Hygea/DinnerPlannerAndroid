@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
@@ -12,31 +13,35 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class ChooseDish extends Activity {
 	ListView list_dishes;
-	Handler handler;
-	ArrayList<String> dishList;
-
+	Handler handler;	
+	List<RowItem> rowItems;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
-
-
+		
 		list_dishes = (ListView) findViewById(R.id.list_dishes);
-		dishList = new ArrayList<String>();
 		
+	
 		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-		Set<Dish> dishes = model.getDishes();
-		
+		//Set<Dish> dishes = model.getDishesOfType(Dish.STARTER);
+	    Set<Dish> dishes = model.getDishes();  
+	    rowItems = new ArrayList<RowItem>();
 		for (Dish d : dishes) {
-			dishList.add(d.getName());
+			String imageString = d.getImage();
+			if (!imageString.contains("drawable/"))
+				imageString = "drawable/"+imageString;
+			imageString = imageString.replace(".jpg", "");	
+			Integer image = getResources().getIdentifier(imageString, null, getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
+			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
+			rowItems.add(item);
 		}
-		
 		handler = new Handler();
 		
 		createList();
@@ -49,17 +54,17 @@ public class ChooseDish extends Activity {
 		getMenuInflater().inflate(R.menu.activity_choose_dish, menu);
 		return true;
 	}
-
-
+	
+	
 
 	public void createList() {
-		ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.item, R.id.item_text, dishList);  
+		CustomListViewAdapter listAdapter = new CustomListViewAdapter(this, R.layout.item, rowItems);  
 		list_dishes.setAdapter(listAdapter);     
 		list_dishes.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long id) {
-				Toast.makeText(getApplicationContext(), "Test dish:"+ dishList.get(position),
+				Toast.makeText(getApplicationContext(), "Clicked: "+ rowItems.get(position).getTitle(),
 						Toast.LENGTH_SHORT).show();
 			}
 		});

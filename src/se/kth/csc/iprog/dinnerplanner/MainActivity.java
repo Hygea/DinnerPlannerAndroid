@@ -1,11 +1,11 @@
 package se.kth.csc.iprog.dinnerplanner;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
 
 		    @Override
 			public void onClick(DialogInterface dialog, int which) {
-		     // Do nothing but close the dialog
-		    }
+		    	Intent myIntent = new Intent(MainActivity.this, ChooseDish.class);
+		    	MainActivity.this.startActivity(myIntent);		    }
 		   });
 
 		 // Remember, create doesn't show the dialog

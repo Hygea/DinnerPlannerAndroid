@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content">
-	
-	<ImageView
-		android:id="@+id/item_image"
-		android:contentDescription="@string/desc"
-		android:layout_width="80dip"
-		android:layout_height="80dip" android:src="@drawable/meatballs" android:scaleType="centerCrop" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
 
-	<RelativeLayout
-	    android:layout_width="100dip"
-	    android:layout_height="match_parent" >
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:contentDescription="@string/desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/meatballs" />
 
-		<TextView
-		    android:id="@+id/item_text"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignParentLeft="true"
-		    android:layout_alignParentTop="true"
-		    android:text="Dish name"
-		    android:textAppearance="?android:attr/textAppearanceLarge" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-		<TextView
-		    android:id="@+id/item_desc"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_below="@id/item_text"
-		    android:layout_alignParentBottom="true"
-		    android:layout_alignParentLeft="true"
-		    android:text="Dish description"
-		    android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Dish name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-	</RelativeLayout>
-	
-	<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/item_check"
-		android:layout_width="fill_parent"
-		android:layout_height="?android:attr/listPreferredItemHeight"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:gravity="center_vertical"
-		android:checkMark="?android:attr/listChoiceIndicatorSingle"
-		android:paddingLeft="6dip"
-		android:paddingRight="6dip" 
-		android:text=""/>
+        <TextView
+            android:id="@+id/item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/item_text"
+            android:text="Dish description"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-	
+        <CheckedTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/item_check"
+            android:layout_width="fill_parent"
+            android:layout_height="?android:attr/listPreferredItemHeight"
+            android:checkMark="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center_vertical"
+            android:paddingLeft="6dip"
+            android:paddingRight="6dip"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+
 </LinearLayout>
