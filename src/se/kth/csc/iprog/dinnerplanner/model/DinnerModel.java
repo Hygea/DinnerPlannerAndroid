@@ -1,46 +1,80 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import se.kth.csc.iprog.dinnerplanner.Menu;
 
 public class DinnerModel implements IDinnerModel {
+	int guests;
+	public ArrayList<Dish> menu = new ArrayList<Dish>();
 	
-	public int getNumberOfGuests(Menu menu){
-		int number = menu.numberOfGuests;
-		return number;
+	public int getNumberOfGuests(){
+		return guests;
 	};
 	
 	public void setNumberOfGuests(int numberOfGuests){
-		
+		guests = numberOfGuests;
 	};
 	
 	/**
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
-	public Dish getSelectedDish(int type){
-		
+	public Dish getSelectedDish(int type){		// ?
+		if(menu.get(0).getType() == type){
+			return menu.get(0);
+		}else if(menu.get(1).getType() == type){
+			return menu.get(1);
+		}else {
+			return menu.get(2);
+		}
 	};
 	
 	/**
 	 * Returns all the dishes on the menu.
 	 */
 	public Set<Dish> getFullMenu(){
-		
+		Set<Dish> result = new HashSet<Dish>();
+		for(Dish d : menu){
+			result.add(d);
+		}
+		return result;
 	};
 	
 	/**
 	 * Returns all ingredients for all the dishes on the menu.
 	 */
 	public Set<Ingredient> getAllIngredients(){
-		
+		Set<Ingredient> result = new HashSet<Ingredient>();
+		for(Dish d: menu){
+			Set<Ingredient> dishIngredients = d.getIngredients();
+			for(Ingredient i : dishIngredients){
+				for(Ingredient iInSet : result){
+					if(i.getName().equals(iInSet.getName())){ // ingredient already exists in the result
+						double quantity = i.getQuantity();
+						iInSet.setQuantity(iInSet.getQuantity()+quantity);
+					} else{
+						result.add(i);
+					}
+				}
+			}
+		}
+		return result;
 	};
 	
 	/**
 	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	 */
 	public float getTotalMenuPrice(){
+		Set<Ingredient> allIngredients = getAllIngredients();
+		double price = 0;
+		float totalprice = 0;
+		guests = getNumberOfGuests();
 		
+		for(Ingredient i : allIngredients){
+			price = price + i.getQuantity()*i.getPrice();
+		}
+		totalprice = (float) price * guests;
+		return totalprice;
 	};
 
 	
