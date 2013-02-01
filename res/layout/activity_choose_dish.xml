@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     tools:context=".ChooseDish" >
 	
-    <!-- HEADER -->
+    <!-- TOP ICONS -->
     <LinearLayout android:id="@+id/top_header"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"         
         android:orientation="vertical" android:layout_alignParentTop="true">
@@ -13,31 +13,29 @@
 
     </LinearLayout>
 	
-    <!-- FOOTER -->
+    <!-- BOTTOM MENU -->
     <LinearLayout android:id="@+id/bottom_footer"
         android:layout_width="fill_parent" android:layout_height="wrap_content"         
         android:orientation="vertical" android:layout_alignParentBottom="true">
-        <!-- menu bar -->
-
         <include
             android:layout_height="wrap_content"
             layout="@layout/footer" />
 
     </LinearLayout>
 
-    <!-- CONTENT -->
+    <!-- LIST OF DISHES -->
     <LinearLayout android:orientation="vertical"
         android:layout_width="fill_parent" android:layout_height="fill_parent"
         android:layout_below="@id/top_header" android:layout_above="@id/bottom_footer"
         android:id="@+id/contentview"
-        android:paddingBottom="5sp" android:background="#EAEAEA">
-
+        android:paddingBottom="5sp">
         <ListView
             android:id="@+id/list_dishes"
+  			android:divider="@android:color/transparent"
+  			android:dividerHeight="10.0sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item" >
-
     	</ListView>
     </LinearLayout>
 

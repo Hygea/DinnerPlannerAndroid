@@ -1,20 +1,25 @@
 package se.kth.csc.iprog.dinnerplanner;
 
+import java.util.ArrayList;
+import java.util.Set;
+
+import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ChooseDish extends Activity {
 	ListView list_dishes;
 	Handler handler;
-	String[] dishList;
+	ArrayList<String> dishList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,8 +28,15 @@ public class ChooseDish extends Activity {
 
 
 		list_dishes = (ListView) findViewById(R.id.list_dishes);
-		dishList = new String[] { "Mat1", "Mat2", "Mat3" };
-
+		dishList = new ArrayList<String>();
+		
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+		Set<Dish> dishes = model.getDishes();
+		
+		for (Dish d : dishes) {
+			dishList.add(d.getName());
+		}
+		
 		handler = new Handler();
 		
 		createList();
@@ -47,7 +59,7 @@ public class ChooseDish extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long id) {
-				Toast.makeText(getApplicationContext(), "Test dish:"+ dishList[position],
+				Toast.makeText(getApplicationContext(), "Test dish:"+ dishList.get(position),
 						Toast.LENGTH_SHORT).show();
 			}
 		});

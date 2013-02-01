@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.InputType;
-import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +20,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new View.OnClickListener() {
-			 public void onClick(View v) {
+			 @Override
+			public void onClick(View v) {
 				  showPopUp2();
 		
 			
@@ -53,7 +53,8 @@ public class MainActivity extends Activity {
 		 helpBuilder.setPositiveButton("Next",
 		   new DialogInterface.OnClickListener() {
 
-		    public void onClick(DialogInterface dialog, int which) {
+		    @Override
+			public void onClick(DialogInterface dialog, int which) {
 		     // Do nothing but close the dialog
 		    }
 		   });

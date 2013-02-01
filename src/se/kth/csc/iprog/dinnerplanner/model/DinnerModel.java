@@ -8,10 +8,12 @@ public class DinnerModel implements IDinnerModel {
 	int guests;
 	public ArrayList<Dish> menu = new ArrayList<Dish>();
 	
+	@Override
 	public int getNumberOfGuests(){
 		return guests;
 	};
 	
+	@Override
 	public void setNumberOfGuests(int numberOfGuests){
 		guests = numberOfGuests;
 	};
@@ -19,6 +21,7 @@ public class DinnerModel implements IDinnerModel {
 	/**
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
+	@Override
 	public Dish getSelectedDish(int type){		// ?
 		if(menu.get(0).getType() == type){
 			return menu.get(0);
@@ -32,6 +35,7 @@ public class DinnerModel implements IDinnerModel {
 	/**
 	 * Returns all the dishes on the menu.
 	 */
+	@Override
 	public Set<Dish> getFullMenu(){
 		Set<Dish> result = new HashSet<Dish>();
 		for(Dish d : menu){
@@ -43,6 +47,7 @@ public class DinnerModel implements IDinnerModel {
 	/**
 	 * Returns all ingredients for all the dishes on the menu.
 	 */
+	@Override
 	public Set<Ingredient> getAllIngredients(){
 		Set<Ingredient> result = new HashSet<Ingredient>();
 		for(Dish d: menu){
@@ -64,6 +69,7 @@ public class DinnerModel implements IDinnerModel {
 	/**
 	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	 */
+	@Override
 	public float getTotalMenuPrice(){
 		Set<Ingredient> allIngredients = getAllIngredients();
 		double price = 0;
