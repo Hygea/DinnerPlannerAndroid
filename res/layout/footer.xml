@@ -5,12 +5,14 @@
     android:layout_width="fill_parent" 
     android:layout_alignParentBottom="true">
     <Button
+        android:id="@+id/button_left"
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back" />
 
     <Button
+		android:id="@+id/button_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

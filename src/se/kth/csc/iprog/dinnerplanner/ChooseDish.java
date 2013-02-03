@@ -13,15 +13,18 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 
 public class ChooseDish extends Activity {
 	ListView dishesListView;
+	Button leftButton;
+	Button rightButton;
 	Handler handler;	
 	List<RowItem> rowItems;
-	int currentDishType;
+	int currentDishType = Dish.STARTER;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,26 @@ public class ChooseDish extends Activity {
 		setContentView(R.layout.activity_choose_dish);
 		
 		dishesListView = (ListView) findViewById(R.id.list_dishes);
-		currentDishType = Dish.STARTER;
+		leftButton = (Button) findViewById(R.id.button_left);
+		rightButton = (Button) findViewById(R.id.button_right);
 		handler = new Handler();
 
+		
+		leftButton.setOnClickListener(new View.OnClickListener() {
+			 @Override
+			public void onClick(View v) {
+				  currentDishType--;
+				  createList();
+			}
+		});
+		rightButton.setOnClickListener(new View.OnClickListener() {
+			 @Override
+			public void onClick(View v) {
+				  currentDishType++;
+				  createList();
+			}
+		});
+		
 		createList();
 	}
 
