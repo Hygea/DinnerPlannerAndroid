@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,9 +23,11 @@ public class ChooseDish extends Activity {
 	ListView dishesListView;
 	Button leftButton;
 	Button rightButton;
+	TextView titleTextView;
 	Handler handler;	
 	List<RowItem> rowItems;
 	int currentDishType = Dish.STARTER;
+	ArrayList<String> dishTitles;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,21 +37,39 @@ public class ChooseDish extends Activity {
 		dishesListView = (ListView) findViewById(R.id.list_dishes);
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
+		titleTextView = (TextView) findViewById(R.id.choose_title);
 		handler = new Handler();
+		
+		dishTitles = new ArrayList<String>();
+		dishTitles.add(getString(R.string.startDish));
+		dishTitles.add(getString(R.string.mainDish));
+		dishTitles.add(getString(R.string.dessertDish));
 
 		
 		leftButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
 			public void onClick(View v) {
-				  currentDishType--;
-				  createList();
+				 if (currentDishType!=Dish.STARTER) { 
+					 currentDishType--;
+					 titleTextView.setText(dishTitles.get(currentDishType-1));
+					 createList();
+				 }
+				 else {
+					 //TODO: Go back to MainActivity
+				 }
 			}
 		});
 		rightButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
 			public void onClick(View v) {
-				  currentDishType++;
-				  createList();
+				 if (currentDishType!=Dish.DESERT) { 
+					 currentDishType++;
+					 titleTextView.setText(dishTitles.get(currentDishType-1));
+					 createList();
+				  }
+				 else {
+					 //TODO: Go to summary activity
+				 }
 			}
 		});
 		

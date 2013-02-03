@@ -29,6 +29,12 @@
         android:layout_below="@id/top_header" android:layout_above="@id/bottom_footer"
         android:id="@+id/contentview"
         android:paddingBottom="5sp">
+        <TextView
+        android:id="@+id/choose_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose dish"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
         <ListView
             android:id="@+id/list_dishes"
   			android:divider="@android:color/transparent"
@@ -38,5 +44,7 @@
             tools:listitem="@layout/item" >
     	</ListView>
     </LinearLayout>
+
+    
 
 </RelativeLayout>

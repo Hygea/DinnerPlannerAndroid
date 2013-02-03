@@ -14,5 +14,8 @@
     <string name="nrOfGuests">1</string>
     <string name="cost">$127.50</string>
     <string name="desc">Description comes here</string>
-
+	<string name="startDish">Choose appetizer</string>
+    <string name="mainDish">Choose main course</string>
+	<string name="dessertDish">Choose dessert</string>
+    
 </resources>
