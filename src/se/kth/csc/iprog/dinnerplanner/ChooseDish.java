@@ -38,6 +38,8 @@ public class ChooseDish extends FragmentActivity {
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
 		
+		// TODO: Knapp fšr Ingredients och de andra
+		
 		dishTitles = new ArrayList<String>();
 		dishTitles.add(getString(R.string.startDish));
 		dishTitles.add(getString(R.string.mainDish));
@@ -47,17 +49,22 @@ public class ChooseDish extends FragmentActivity {
 		final FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frame);
         
+        
+        
+        
 		leftButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
 			public void onClick(View v) {
 				 if (currentDishType!=Dish.STARTER) {
+					// Uppdatera listviewn i ChooseDishFragment genom att ladda om Fragmenten
 					 rightButton.setVisibility(View.VISIBLE);
 					 currentDishType--;
 					 FragmentTransaction ft = fm.beginTransaction();
-			         ft.replace(R.id.frame, new ChooseDishFragment());
+			         ft.replace(R.id.frame, new ChooseDishFragment()); 
 			         ft.commit();
 				 }
 				 else {
+					 // GŒr tillbaka till startsidan
 					 Intent myIntent = new Intent(ChooseDish.this, MainActivity.class);
 					 ChooseDish.this.startActivity(myIntent);					 }
 			}
@@ -66,12 +73,14 @@ public class ChooseDish extends FragmentActivity {
 			 @Override
 			public void onClick(View v) {
 				 currentDishType++;
+				// Uppdatera listviewn i ChooseDishFragment genom att ladda om Fragmenten
 				 if (currentDishType<=Dish.DESERT) { 
 					 FragmentTransaction ft = fm.beginTransaction();
 			         ft.replace(R.id.frame, new ChooseDishFragment());
 			         ft.commit();				  
 			     }
 				 else {
+					// Nu Šr vi vid Preparation
 					 rightButton.setVisibility(View.INVISIBLE);
 					 //TODO: Check if at least 1 dish has been chosen
 					 FragmentTransaction ft = fm.beginTransaction();
@@ -82,7 +91,7 @@ public class ChooseDish extends FragmentActivity {
 		});
 		
 		
-
+		// Fšrsta fragmenten som laddas nŠr man startar ChooseDish-activityn
         if (fragment == null) {
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.frame, new ChooseDishFragment());
