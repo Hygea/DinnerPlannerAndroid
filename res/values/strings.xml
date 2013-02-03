@@ -17,5 +17,6 @@
 	<string name="startDish">Choose appetizer</string>
     <string name="mainDish">Choose main course</string>
 	<string name="dessertDish">Choose dessert</string>
-    
+    <string name="prepare">Preparation</string>
+	
 </resources>

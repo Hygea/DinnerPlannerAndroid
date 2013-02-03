@@ -6,10 +6,13 @@ import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,40 +23,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ChooseDish extends Activity {
-	ListView dishesListView;
+public class ChooseDish extends FragmentActivity {
 	Button leftButton;
 	Button rightButton;
-	TextView titleTextView;
-	Handler handler;	
-	List<RowItem> rowItems;
-	int currentDishType = Dish.STARTER;
-	ArrayList<String> dishTitles;
+	
+	public static int currentDishType = Dish.STARTER;
+	public static ArrayList<String> dishTitles;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
 		
-		dishesListView = (ListView) findViewById(R.id.list_dishes);
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
-		titleTextView = (TextView) findViewById(R.id.choose_title);
-		handler = new Handler();
 		
 		dishTitles = new ArrayList<String>();
 		dishTitles.add(getString(R.string.startDish));
 		dishTitles.add(getString(R.string.mainDish));
 		dishTitles.add(getString(R.string.dessertDish));
+		dishTitles.add(getString(R.string.prepare));
 
-		
+		final FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.frame);
+        
 		leftButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
 			public void onClick(View v) {
-				 if (currentDishType!=Dish.STARTER) { 
+				 if (currentDishType!=Dish.STARTER) {
+					 rightButton.setVisibility(View.VISIBLE);
 					 currentDishType--;
-					 titleTextView.setText(dishTitles.get(currentDishType-1));
-					 createList();
+					 FragmentTransaction ft = fm.beginTransaction();
+			         ft.replace(R.id.frame, new ChooseDishFragment());
+			         ft.commit();
 				 }
 				 else {
 					 Intent myIntent = new Intent(ChooseDish.this, MainActivity.class);
@@ -63,18 +65,29 @@ public class ChooseDish extends Activity {
 		rightButton.setOnClickListener(new View.OnClickListener() {
 			 @Override
 			public void onClick(View v) {
-				 if (currentDishType!=Dish.DESERT) { 
-					 currentDishType++;
-					 titleTextView.setText(dishTitles.get(currentDishType-1));
-					 createList();
-				  }
+				 currentDishType++;
+				 if (currentDishType<=Dish.DESERT) { 
+					 FragmentTransaction ft = fm.beginTransaction();
+			         ft.replace(R.id.frame, new ChooseDishFragment());
+			         ft.commit();				  
+			     }
 				 else {
-					 //TODO: Check if at least 1 dish has been chosen -> go to summary activity
+					 rightButton.setVisibility(View.INVISIBLE);
+					 //TODO: Check if at least 1 dish has been chosen
+					 FragmentTransaction ft = fm.beginTransaction();
+			         ft.replace(R.id.frame, new PrepareFragment());
+			         ft.commit();	
 				 }
 			}
 		});
 		
-		createList();
+		
+
+        if (fragment == null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.frame, new ChooseDishFragment());
+            ft.commit();
+        }
 	}
 
 	@Override
@@ -84,36 +97,5 @@ public class ChooseDish extends Activity {
 		return true;
 	}
 	
-	
-
-	public void getRowItems() {
-		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-	    Set<Dish> dishes = model.getDishesOfType(currentDishType);
-	    rowItems = new ArrayList<RowItem>();
-		for (Dish d : dishes) {
-			String imageString = d.getImage();
-			if (!imageString.contains("drawable/"))
-				imageString = "drawable/"+imageString;
-			imageString = imageString.replace(".jpg", "");	
-			Integer image = getResources().getIdentifier(imageString, null, getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
-			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
-			rowItems.add(item);
-		}
-	}
-	
-	public void createList() {
-		getRowItems();
-		CustomListViewAdapter listAdapter = new CustomListViewAdapter(this, R.layout.item, rowItems);  
-		dishesListView.setAdapter(listAdapter);     
-		dishesListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-					long id) {
-				Toast.makeText(getApplicationContext(), "Clicked: "+ rowItems.get(position).getTitle(),
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-
-	}
 
 }

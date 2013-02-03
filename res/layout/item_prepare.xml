@@ -3,6 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
+    
+
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="80dip"
@@ -22,7 +24,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="Dish name"
-			android:textColor="#000000"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -32,20 +33,18 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/item_text"
             android:text="Dish description"
-            android:textColor="#000000"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <CheckedTextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/item_check"
-            android:layout_width="fill_parent"
-            android:layout_height="?android:attr/listPreferredItemHeight"
-            android:checkMark="?android:attr/listChoiceIndicatorSingle"
-            android:gravity="center_vertical"
-            android:paddingLeft="6dip"
-            android:paddingRight="6dip"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+		<ExpandableListView
+		    android:id="@+id/item_prepare_expand"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center_vertical"
+		    android:paddingLeft="6dip"
+		    android:paddingRight="6dip"
+		    android:text="" >
+    	
+		</ExpandableListView>
     </RelativeLayout>
 
 </LinearLayout>
