@@ -7,6 +7,7 @@ import java.util.Set;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -55,8 +56,8 @@ public class ChooseDish extends Activity {
 					 createList();
 				 }
 				 else {
-					 //TODO: Go back to MainActivity
-				 }
+					 Intent myIntent = new Intent(ChooseDish.this, MainActivity.class);
+					 ChooseDish.this.startActivity(myIntent);					 }
 			}
 		});
 		rightButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +69,7 @@ public class ChooseDish extends Activity {
 					 createList();
 				  }
 				 else {
-					 //TODO: Go to summary activity
+					 //TODO: Check if at least 1 dish has been chosen -> go to summary activity
 				 }
 			}
 		});
