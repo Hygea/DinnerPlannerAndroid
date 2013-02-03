@@ -16,36 +16,23 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 public class ChooseDish extends Activity {
-	ListView list_dishes;
+	ListView dishesListView;
 	Handler handler;	
 	List<RowItem> rowItems;
+	int currentDishType;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
 		
-		list_dishes = (ListView) findViewById(R.id.list_dishes);
-		
-	
-		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-		//Set<Dish> dishes = model.getDishesOfType(Dish.STARTER);
-	    Set<Dish> dishes = model.getDishes();  
-	    rowItems = new ArrayList<RowItem>();
-		for (Dish d : dishes) {
-			String imageString = d.getImage();
-			if (!imageString.contains("drawable/"))
-				imageString = "drawable/"+imageString;
-			imageString = imageString.replace(".jpg", "");	
-			Integer image = getResources().getIdentifier(imageString, null, getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
-			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
-			rowItems.add(item);
-		}
+		dishesListView = (ListView) findViewById(R.id.list_dishes);
+		currentDishType = Dish.STARTER;
 		handler = new Handler();
-		
-		createList();
 
+		createList();
 	}
 
 	@Override
@@ -57,10 +44,26 @@ public class ChooseDish extends Activity {
 	
 	
 
+	public void getRowItems() {
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+	    Set<Dish> dishes = model.getDishesOfType(currentDishType);
+	    rowItems = new ArrayList<RowItem>();
+		for (Dish d : dishes) {
+			String imageString = d.getImage();
+			if (!imageString.contains("drawable/"))
+				imageString = "drawable/"+imageString;
+			imageString = imageString.replace(".jpg", "");	
+			Integer image = getResources().getIdentifier(imageString, null, getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
+			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
+			rowItems.add(item);
+		}
+	}
+	
 	public void createList() {
+		getRowItems();
 		CustomListViewAdapter listAdapter = new CustomListViewAdapter(this, R.layout.item, rowItems);  
-		list_dishes.setAdapter(listAdapter);     
-		list_dishes.setOnItemClickListener(new OnItemClickListener() {
+		dishesListView.setAdapter(listAdapter);     
+		dishesListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long id) {
