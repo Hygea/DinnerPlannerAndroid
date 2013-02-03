@@ -30,11 +30,11 @@
         android:id="@+id/contentview"
         android:paddingBottom="5sp">
         <TextView
-        android:id="@+id/choose_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose dish"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+	        android:id="@+id/choose_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/startDish"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
         <ListView
             android:id="@+id/list_dishes"
   			android:divider="@android:color/transparent"
