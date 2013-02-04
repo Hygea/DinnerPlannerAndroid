@@ -23,19 +23,19 @@ public class Ingredients extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ingredients);
 		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-		ingredients = (ListView) findViewById(R.id.ingredientslist);
+		ingredients = (ListView) findViewById(R.id.listingredients);
 		
 		Set<Ingredient> ingredient = new HashSet<Ingredient>();
 		ingredient = model.getAllIngredients();
-		ArrayList<String> starterArray = new ArrayList<String>();
-	//	for(Ingredient d : starters){
-		//	starterArray.add(d.getIngredients());
-	//	}
+		ArrayList<String> ingredientArray = new ArrayList<String>();
+		for(Ingredient d : ingredient){
+			ingredientArray.add(d.getQuantity()+d.getUnit()+" "+d.getName());
+		}
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-               android.R.layout.simple_list_item_1, starterArray);
+               android.R.layout.simple_list_item_1, ingredientArray);
    
-		//ingredients.setAdapter(adapter);
+		ingredients.setAdapter(adapter);
 		
 
 	}
