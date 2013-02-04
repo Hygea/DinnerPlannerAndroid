@@ -37,14 +37,8 @@ public class ChooseDishFragment extends Fragment {
 		titleTextView.setText(ChooseDish.dishTitles.get(ChooseDish.currentDishType-1));
 		createList();
 		
-		
-		
 		return view;
 	}
-
-	
-	
-	
 
 	public void getRowItems() {
 		DinnerModel model = ((DinnerPlannerApplication) this.getActivity().getApplicationContext()).getModel();

@@ -46,8 +46,12 @@ public class ChooseDish extends FragmentActivity {
 	    String s = Float.toString(price);
 	    s ='$'+s;
 	    
-	    TextView v = (TextView)findViewById(R.id.textView1);
-	    v.setText(s);
+	    TextView totalcost = (TextView)findViewById(R.id.textView1);
+	    totalcost.setText(s);
+	    
+	    String guestsString = Integer.toString(guests);
+	    final Button guestsButton = (Button) findViewById(R.id.numberOfGuestsButton);
+	    guestsButton.setText(guestsString);
 
 
 		
