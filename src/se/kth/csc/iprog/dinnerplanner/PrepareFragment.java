@@ -29,19 +29,45 @@ public class PrepareFragment extends Fragment {
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_choose_dish, container, false);
+        View view = inflater.inflate(R.layout.fragment_preparations, container, false);
 		
 		dishesListView = (ListView) view.findViewById(R.id.list_dishes);
 		titleTextView = (TextView) view.findViewById(R.id.choose_title);
 
-		titleTextView.setText(ChooseDish.dishTitles.get(ChooseDish.currentDishType-1));
-
+		titleTextView.setText(ChooseDish.dishTitles.get(ChooseDish.currentDishType-1)); // "Preparation"
+		createList();
+		
 		return view;
 	}
 
+	public void getRowItems() {
+		DinnerModel model = ((DinnerPlannerApplication) this.getActivity().getApplicationContext()).getModel();
+	    Set<Dish> dishes = model.getFullMenu(); // Hämtar hela menyn
+	    rowItems = new ArrayList<RowItem>();
+		for (Dish d : dishes) {
+			String imageString = d.getImage();
+			if (!imageString.contains("drawable/"))
+				imageString = "drawable/"+imageString;
+			imageString = imageString.replace(".jpg", "");	
+			Integer image = getResources().getIdentifier(imageString, null, this.getActivity().getApplicationContext().getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
+			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
+			rowItems.add(item);
+		}
+	}
 	
-	
-	
+	public void createList() {
+		getRowItems();
+		CustomListViewAdapter listAdapter = new CustomListViewAdapter(this.getActivity().getApplicationContext(), R.layout.item_prepare, rowItems);  
+		dishesListView.setAdapter(listAdapter);     
+		dishesListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+					long id) {
+				/*Toast.makeText(getApplicationContext(), "Clicked: "+ rowItems.get(position).getTitle(),
+						Toast.LENGTH_SHORT).show();*/
+			}
+		});
 
+	}
 
 }

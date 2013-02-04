@@ -58,9 +58,10 @@ public final class R {
         public static final int dish=0x7f030003;
         public static final int footer=0x7f030004;
         public static final int fragment_choose_dish=0x7f030005;
-        public static final int header=0x7f030006;
-        public static final int item=0x7f030007;
-        public static final int item_prepare=0x7f030008;
+        public static final int fragment_preparations=0x7f030006;
+        public static final int header=0x7f030007;
+        public static final int item=0x7f030008;
+        public static final int item_prepare=0x7f030009;
     }
     public static final class menu {
         public static final int activity_choose_dish=0x7f060000;

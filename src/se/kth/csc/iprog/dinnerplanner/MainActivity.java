@@ -55,6 +55,9 @@ public class MainActivity extends Activity {
 			public void onClick(DialogInterface dialog, int which) {
 		    	Editable t = input.getText();
 		    	String s = t.toString();
+		    	if(s == null){
+		    		s = "1";
+		    	}
 		    	int guests = Integer.parseInt(s);
 
 		    	Intent myIntent = new Intent(MainActivity.this, ChooseDish.class);
