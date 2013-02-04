@@ -29,7 +29,11 @@ public class Ingredients extends Activity {
 		ingredient = model.getAllIngredients();
 		ArrayList<String> ingredientArray = new ArrayList<String>();
 		for(Ingredient d : ingredient){
+<<<<<<< HEAD
 			ingredientArray.add(d.getQuantity()*model.getNumberOfGuests()+" "+d.getUnit()+" "+d.getName());
+=======
+			ingredientArray.add(d.getQuantity()*model.getNumberOfGuests()+d.getUnit()+" "+d.getName());
+>>>>>>> Anooying
 		}
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
