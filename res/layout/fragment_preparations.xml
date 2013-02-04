@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/choose_title"
             android:divider="@android:color/transparent"
-            android:dividerHeight="30.0sp"
+            android:dividerHeight="20.0sp"
             tools:listitem="@layout/item_prepare" >
 
     	</ListView>

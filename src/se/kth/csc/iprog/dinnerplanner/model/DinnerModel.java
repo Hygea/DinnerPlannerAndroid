@@ -8,8 +8,6 @@ public class DinnerModel implements IDinnerModel {
 	int guests;
 	public ArrayList<Dish> menu = new ArrayList<Dish>();
 	
-
-	
 	@Override
 	public int getNumberOfGuests(){
 		return guests;
