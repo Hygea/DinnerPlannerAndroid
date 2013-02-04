@@ -55,7 +55,7 @@ public class DinnerModel implements IDinnerModel {
 		for(Dish d: menu){
 			Set<Ingredient> dishIngredients = d.getIngredients();
 			for(Ingredient i : dishIngredients){
-				i.setQuantity(i.getQuantity()*getNumberOfGuests());
+				i.setQuantity(i.getQuantity());
 				//for(Ingredient iInSet : result){
 				//	if(i.getName().equals(iInSet.getName())){ // ingredient already exists in the result
 				//		double quantity = i.getQuantity();
