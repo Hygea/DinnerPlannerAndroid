@@ -8,6 +8,8 @@ public class DinnerModel implements IDinnerModel {
 	int guests;
 	public ArrayList<Dish> menu = new ArrayList<Dish>();
 	
+
+	
 	@Override
 	public int getNumberOfGuests(){
 		return guests;
@@ -22,7 +24,7 @@ public class DinnerModel implements IDinnerModel {
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
 	@Override
-	public Dish getSelectedDish(int type){		// ?
+	public Dish getSelectedDish(int type){		// OBS! Lär returnera null om menu är tom. Snyggare lösning behövs.
 		if(menu.get(0).getType() == type){
 			return menu.get(0);
 		}else if(menu.get(1).getType() == type){
@@ -99,9 +101,6 @@ public class DinnerModel implements IDinnerModel {
 	 */
 	public DinnerModel(){
 		
-		
-		
-		
 		//Adding some example data, you can add more
 		Dish dish1 = new Dish("French toast",Dish.STARTER,"toast.jpg","In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.");
 		Ingredient dish1ing1 = new Ingredient("eggs",0.5,"",1);
@@ -141,8 +140,24 @@ public class DinnerModel implements IDinnerModel {
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
 		
+		Dish dish3 = new Dish("Baked Brie", Dish.DESERT, "bakedbrie.jpg", "Savour with care!");
+		Ingredient dish3ing1 = new Ingredient("Brie cheese", 100, "g", 20);
+		Ingredient dish3ing2 = new Ingredient("sea salt",0.7,"g",3);
+		Ingredient dish3ing3 = new Ingredient("Crackers", 15, "", 2);
+		dish3.addIngredient(dish3ing1);
+		dish3.addIngredient(dish3ing2);
+		dish3.addIngredient(dish3ing3);
+		dishes.add(dish3);
+
+		
+		// Hårdkodad menu att hämta data ifrån
+		menu.add(dish1);
+		menu.add(dish2);
+		menu.add(dish3);
 		
 	}
+	
+	
 	
 	/**
 	 * Returns the set of dishes of specific type. (1 = starter, 2 = main, 3 = desert).

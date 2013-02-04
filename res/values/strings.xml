@@ -22,5 +22,6 @@
 	<string name="dishName">Shrimp cocktail</string>
     <string name="ingredients">1kg shrimps\n1 avocado\n1 onion\n100g butter\n</string>
     <string name="howTo">Here is some text on how to prepare a shrimp cocktail bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
+    <string name="dishPicture">An image</string>
 	
 </resources>

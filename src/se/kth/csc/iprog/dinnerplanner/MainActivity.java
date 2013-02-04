@@ -23,9 +23,6 @@ public class MainActivity extends Activity {
 			 @Override
 			public void onClick(View v) {
 				  showPopUp2();
-		
-			
-				
 			}
 		});
 		//To get the dinner model you can use the following code:
