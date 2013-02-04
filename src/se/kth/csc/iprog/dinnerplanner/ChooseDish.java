@@ -35,6 +35,22 @@ public class ChooseDish extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
 		
+		// Ladda total price, bšr senare uppdateras vid select av dish samt Šndring av guests
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+		
+		Intent intent = getIntent();
+		int guests = intent.getIntExtra("guests", -1);
+		model.setNumberOfGuests(guests);
+		
+	    float price = (float) model.getTotalMenuPrice();
+	    String s = Float.toString(price);
+	    s ='$'+s;
+	    
+	    TextView v = (TextView)findViewById(R.id.textView1);
+	    v.setText(s);
+
+
+		
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
 		

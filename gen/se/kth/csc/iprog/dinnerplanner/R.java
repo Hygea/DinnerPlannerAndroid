@@ -68,19 +68,11 @@ public final class R {
         public static final int cost=0x7f04000b;
         public static final int desc=0x7f04000c;
         public static final int dessertDish=0x7f04000f;
-<<<<<<< HEAD
         public static final int dishName=0x7f040012;
         public static final int dishPicture=0x7f040011;
         public static final int hello_world=0x7f040001;
         public static final int howTo=0x7f040014;
         public static final int ingredients=0x7f040013;
-=======
-        public static final int dishName=0x7f040011;
-        public static final int dishPicture=0x7f040014;
-        public static final int hello_world=0x7f040001;
-        public static final int howTo=0x7f040013;
-        public static final int ingredients=0x7f040012;
->>>>>>> Tog bort Menu.java, la till en String, lade till menu med 3st dishes
         public static final int mainDish=0x7f04000e;
         public static final int mainImageDescription=0x7f040007;
         public static final int menu_settings=0x7f040002;

@@ -55,14 +55,15 @@ public class DinnerModel implements IDinnerModel {
 		for(Dish d: menu){
 			Set<Ingredient> dishIngredients = d.getIngredients();
 			for(Ingredient i : dishIngredients){
-				for(Ingredient iInSet : result){
-					if(i.getName().equals(iInSet.getName())){ // ingredient already exists in the result
-						double quantity = i.getQuantity();
-						iInSet.setQuantity(iInSet.getQuantity()+quantity);
-					} else{
-						result.add(i);
-					}
-				}
+				//for(Ingredient iInSet : result){
+				//	if(i.getName().equals(iInSet.getName())){ // ingredient already exists in the result
+				//		double quantity = i.getQuantity();
+				//		iInSet.setQuantity(iInSet.getQuantity()+quantity);
+				//	} else{
+				//		result.add(i);
+				//	}
+				//}
+				result.add(i); // testing, tar inte hänsyn till om ingrediens redan finns tillagd
 			}
 		}
 		return result;
@@ -79,9 +80,10 @@ public class DinnerModel implements IDinnerModel {
 		guests = getNumberOfGuests();
 		
 		for(Ingredient i : allIngredients){
-			price = price + i.getQuantity()*i.getPrice();
+			price = i.getPrice();
+			totalprice += price;
 		}
-		totalprice = (float) price * guests;
+		totalprice = totalprice * guests;
 		return totalprice;
 	};
 
@@ -141,9 +143,9 @@ public class DinnerModel implements IDinnerModel {
 		dishes.add(dish2);
 		
 		Dish dish3 = new Dish("Baked Brie", Dish.DESERT, "bakedbrie.jpg", "Savour with care!");
-		Ingredient dish3ing1 = new Ingredient("Brie cheese", 100, "g", 20);
-		Ingredient dish3ing2 = new Ingredient("sea salt",0.7,"g",3);
-		Ingredient dish3ing3 = new Ingredient("Crackers", 15, "", 2);
+		Ingredient dish3ing1 = new Ingredient("Brie cheese", 20, "g", 10);
+		Ingredient dish3ing2 = new Ingredient("sea salt",0.2,"g",3);
+		Ingredient dish3ing3 = new Ingredient("Crackers", 6, "", 0.5);
 		dish3.addIngredient(dish3ing1);
 		dish3.addIngredient(dish3ing2);
 		dish3.addIngredient(dish3ing3);
@@ -154,6 +156,8 @@ public class DinnerModel implements IDinnerModel {
 		menu.add(dish1);
 		menu.add(dish2);
 		menu.add(dish3);
+		
+		guests = 1;
 		
 	}
 	

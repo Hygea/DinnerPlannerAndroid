@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
@@ -52,7 +53,12 @@ public class MainActivity extends Activity {
 
 		    @Override
 			public void onClick(DialogInterface dialog, int which) {
+		    	Editable t = input.getText();
+		    	String s = t.toString();
+		    	int guests = Integer.parseInt(s);
+
 		    	Intent myIntent = new Intent(MainActivity.this, ChooseDish.class);
+		    	myIntent.putExtra("guests", guests);
 		    	MainActivity.this.startActivity(myIntent);		    }
 		   });
 
