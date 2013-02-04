@@ -7,16 +7,15 @@
 	        android:id="@+id/choose_title"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/startDish"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	        android:text="@string/startDish"/>
 
         <ListView
             android:id="@+id/list_dishes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_below="@+id/choose_title"
             android:divider="@android:color/transparent"
-            android:dividerHeight="20.0sp"
+            android:dividerHeight="30.0sp"
             tools:listitem="@layout/item_prepare" >
 
     	</ListView>

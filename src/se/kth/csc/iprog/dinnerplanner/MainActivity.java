@@ -1,6 +1,5 @@
 package se.kth.csc.iprog.dinnerplanner;
 
-import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,10 +25,6 @@ public class MainActivity extends Activity {
 				  showPopUp2();
 			}
 		});
-		//To get the dinner model you can use the following code:
-		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-	
-		
 	}
 
 	@Override

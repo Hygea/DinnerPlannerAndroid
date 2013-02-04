@@ -12,14 +12,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int bakedbrie=0x7f020000;
-        public static final int button_background=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icecream=0x7f020003;
-        public static final int list=0x7f020004;
-        public static final int meatballs=0x7f020005;
-        public static final int persons=0x7f020006;
-        public static final int sourdough=0x7f020007;
-        public static final int toast=0x7f020008;
+        public static final int blueberry=0x7f020001;
+        public static final int button_background=0x7f020002;
+        public static final int crab=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icecream=0x7f020005;
+        public static final int list=0x7f020006;
+        public static final int meatballs=0x7f020007;
+        public static final int persons=0x7f020008;
+        public static final int pie=0x7f020009;
+        public static final int sourdough=0x7f02000a;
+        public static final int toast=0x7f02000b;
     }
     public static final class id {
         public static final int LinearLayout02=0x7f07000e;
@@ -41,11 +44,10 @@ public final class R {
         public static final int item_check=0x7f070019;
         public static final int item_desc=0x7f070018;
         public static final int item_image=0x7f070016;
-        public static final int item_prepare_expand=0x7f07001a;
         public static final int item_text=0x7f070017;
         public static final int list_dishes=0x7f070012;
         public static final int listingredients=0x7f070004;
-        public static final int menu_settings=0x7f07001b;
+        public static final int menu_settings=0x7f07001a;
         public static final int numberOfGuestsButton=0x7f070014;
         public static final int textView1=0x7f070005;
         public static final int textView2=0x7f070007;

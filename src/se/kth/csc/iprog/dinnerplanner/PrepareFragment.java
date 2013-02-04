@@ -6,20 +6,15 @@ import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class PrepareFragment extends Fragment {
@@ -42,22 +37,22 @@ public class PrepareFragment extends Fragment {
 
 	public void getRowItems() {
 		DinnerModel model = ((DinnerPlannerApplication) this.getActivity().getApplicationContext()).getModel();
-	    Set<Dish> dishes = model.getFullMenu(); // Hämtar hela menyn
+	    Set<Dish> dishes = model.getFullMenu(); // H√§mtar hela menyn
 	    rowItems = new ArrayList<RowItem>();
 		for (Dish d : dishes) {
 			String imageString = d.getImage();
 			if (!imageString.contains("drawable/"))
 				imageString = "drawable/"+imageString;
 			imageString = imageString.replace(".jpg", "");	
-			Integer image = getResources().getIdentifier(imageString, null, this.getActivity().getApplicationContext().getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
-			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
+			Integer image = getResources().getIdentifier(imageString, null, this.getActivity().getApplicationContext().getPackageName()); 	// F√•r att ta fram imagestr≈†ngen som en int till rowItem
+			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// L≈†gga in all information som ska visas i listan i en anpassad RowItem
 			rowItems.add(item);
 		}
 	}
 	
 	public void createList() {
 		getRowItems();
-		CustomListViewAdapter listAdapter = new CustomListViewAdapter(this.getActivity().getApplicationContext(), R.layout.item_prepare, rowItems);  
+		Prepareadapter listAdapter = new Prepareadapter (this.getActivity().getApplicationContext(), R.layout.item_prepare, rowItems);  
 		dishesListView.setAdapter(listAdapter);     
 		dishesListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
