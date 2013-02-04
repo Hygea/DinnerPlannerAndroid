@@ -27,6 +27,11 @@
             android:label="@string/title_activity_choose_dish" >
             
         </activity>
+            <activity
+            android:name="se.kth.csc.iprog.dinnerplanner.Ingredients"
+            android:label="@string/title_ingredients" >
+            
+        </activity>
     </application>
 
 </manifest>

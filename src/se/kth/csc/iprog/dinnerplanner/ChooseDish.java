@@ -57,6 +57,7 @@ public class ChooseDish extends FragmentActivity {
 		
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
+		Button ingredients = (Button) findViewById(R.id.ingredientslist);
 		
 		// TODO: Knapp fšr Ingredients och de andra
 		
@@ -68,7 +69,13 @@ public class ChooseDish extends FragmentActivity {
 
 		final FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.frame);
-        
+        ingredients.setOnClickListener(new View.OnClickListener(){
+        	@Override
+        	public void onClick(View v) {
+        		Intent myIntent = new Intent(ChooseDish.this, Ingredients.class);
+		    	ChooseDish.this.startActivity(myIntent);
+        	}
+        });
         
         
         
