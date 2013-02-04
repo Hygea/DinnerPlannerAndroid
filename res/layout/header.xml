@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout02" 
-    android:layout_height="wrap_content" 
-    android:layout_width="fill_parent" 
-    android:layout_alignParentBottom="true">
+    android:id="@+id/LinearLayout02"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true" >
 
     <Button
         android:layout_width="wrap_content"
@@ -11,12 +11,21 @@
         android:drawableLeft="@drawable/persons"
         android:text="@string/nrOfGuests" />
 
-     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentRight="true"
-         android:layout_alignParentTop="true"
-         android:drawableLeft="@drawable/list"
-         android:text="@string/cost" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="10dp"
+        android:text="@string/cost"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/textView1"
+        android:drawableLeft="@drawable/list" />
 
 </RelativeLayout>
