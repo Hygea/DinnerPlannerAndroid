@@ -44,10 +44,8 @@ public class ChooseDishFragment extends Fragment {
 			if (!imageString.contains("drawable/"))
 				imageString = "drawable/"+imageString;
 			imageString = imageString.replace(".jpg", "");	
-			Integer image = getResources().getIdentifier(imageString, null, this.getActivity().getApplicationContext().getPackageName()); 	
-			// För att ta fram imagesträngen som en int till rowItem
-			RowItem item = new RowItem(image, d.getName(), d.getDescription());		
-			// Lägga in all information som ska visas i listan i en anpassad RowItem
+			Integer image = getResources().getIdentifier(imageString, null, this.getActivity().getApplicationContext().getPackageName()); 	// För att ta fram imagesträngen som en int till rowItem
+			RowItem item = new RowItem(image, d.getName(), d.getDescription());		// Lägga in all information som ska visas i listan i en anpassad RowItem
 			rowItems.add(item);
 		}
 	}
@@ -60,25 +58,11 @@ public class ChooseDishFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long id) {
-				DinnerModel model = ((DinnerPlannerApplication) getActivity().getApplicationContext()).getModel();
-				
-				Dish currentDish = model.getSelectedDish(ChooseDish.currentDishType);
-				Dish oldDish = currentDish;
-				if (currentDish != null) {
-					model.removeFromMenu(currentDish);
-				}
-				
-				// Ta bort redan sparad menyitem (TODO: även uppdatera visuellt)
-				
-				String pickedDish = rowItems.get(position).getTitle();
-			    Set<Dish> dishes = model.getDishesOfType(ChooseDish.currentDishType);
-				for (Dish d : dishes) {
-					if (pickedDish.equals(d.getName()))
-						if (d != oldDish)
-							model.addToMenu(d);
-				}
+				/*Toast.makeText(getApplicationContext(), "Clicked: "+ rowItems.get(position).getTitle(),
+						Toast.LENGTH_SHORT).show();*/
 			}
 		});
 
 	}
+
 }
