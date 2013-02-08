@@ -25,7 +25,10 @@ public class MainActivity extends Activity {
 				  showPopUp2();
 			}
 		});
-	}
+	    //ChooseDish observing = new ChooseDish();
+		//DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+		//model.registerObserver(observing);
+	}	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

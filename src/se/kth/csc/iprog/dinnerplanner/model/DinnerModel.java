@@ -4,32 +4,35 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DinnerModel implements IDinnerModel {
+import java.util.Observable;
+
+public class DinnerModel extends Observable implements IDinnerModel  {
 	int guests;
 	public ArrayList<Dish> menu = new ArrayList<Dish>();
 	
 	@Override
 	public int getNumberOfGuests(){
 		return guests;
-	};
+	}
 	
-	@Override
+	
 	public void setNumberOfGuests(int numberOfGuests){
 		guests = numberOfGuests;
+		setChanged();
+		notifyObservers();
 	};
+
 	
 	/**
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
 	@Override
 	public Dish getSelectedDish(int type){		// OBS! LŠr returnera null om menu Šr tom. Snyggare lšsning behšvs.
-		if(menu.get(0).getType() == type){
-			return menu.get(0);
-		}else if(menu.get(1).getType() == type){
-			return menu.get(1);
-		}else {
-			return menu.get(2);
+		for (int i=0; i < menu.size(); i++) {
+			if (menu.get(i).getType() == type)
+				return menu.get(i);
 		}
+			return null;
 	};
 	
 	/**
@@ -43,6 +46,17 @@ public class DinnerModel implements IDinnerModel {
 		}
 		return result;
 	};
+	
+	public void addToMenu(Dish d) {
+		menu.add(d);
+		setChanged();
+		notifyObservers();
+	}
+	public void removeFromMenu(Dish d) {
+		menu.remove(d);
+		setChanged();
+		notifyObservers();
+	}
 	
 	/**
 	 * Returns all ingredients for all the dishes on the menu.
@@ -103,7 +117,7 @@ public class DinnerModel implements IDinnerModel {
 		
 		//Adding some example data, you can add more
 		Dish dish1 = new Dish("French toast",Dish.STARTER,"toast.jpg","In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.");
-		Ingredient dish1ing1 = new Ingredient("eggs",0.5,"",1);
+		Ingredient dish1ing1 = new Ingredient("egg",0.5,"",1);
 		Ingredient dish1ing2 = new Ingredient("milk",30,"ml",6);
 		Ingredient dish1ing3 = new Ingredient("brown sugar",7,"g",1);
 		Ingredient dish1ing4 = new Ingredient("ground nutmeg",0.5,"g",12);
@@ -190,10 +204,10 @@ public class DinnerModel implements IDinnerModel {
 
 		
 		// HŒrdkodad menu att hŠmta data ifrŒn
-		menu.add(dish1);
+		/*menu.add(dish1);
 		menu.add(dish2);
 		menu.add(dish3);
-		
+		*/
 		guests = 1;
 		
 	}

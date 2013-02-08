@@ -1,7 +1,8 @@
 package se.kth.csc.iprog.dinnerplanner;
 
 import java.util.ArrayList;
-
+import java.util.Observable;
+import java.util.Observer;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -22,7 +23,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class ChooseDish extends FragmentActivity {
+public class ChooseDish extends FragmentActivity implements Observer {
 	Button leftButton;
 	Button rightButton;
 
@@ -33,7 +34,10 @@ public class ChooseDish extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_dish);
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
 
+		model.addObserver(this);
+		
 		Button guestsButton = (Button) findViewById(R.id.numberOfGuestsButton);
 		leftButton = (Button) findViewById(R.id.button_left);
 		rightButton = (Button) findViewById(R.id.button_right);
@@ -160,19 +164,23 @@ public class ChooseDish extends FragmentActivity {
 	
 	private void updateGuests(int g){
 		// Ladda total price, bšr senare uppdateras vid select av dish samt Šndring av guests
-				DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
-				Button guestsButton = (Button) findViewById(R.id.numberOfGuestsButton);
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+		model.setNumberOfGuests(g);
+	}
+	
+	@Override
+	public void update(Observable observable, Object data) {
+		DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+		Button guestsButton = (Button) findViewById(R.id.numberOfGuestsButton);
 
-				model.setNumberOfGuests(g);
+		float price = (float) model.getTotalMenuPrice();
+		String s = Float.toString(price);
+		s ='$'+s;
 
-				float price = (float) model.getTotalMenuPrice();
-				String s = Float.toString(price);
-				s ='$'+s;
+		TextView totalcost = (TextView)findViewById(R.id.textView1);
+		totalcost.setText(s);
 
-				TextView totalcost = (TextView)findViewById(R.id.textView1);
-				totalcost.setText(s);
-
-				String guestsString = Integer.toString(g);
-				guestsButton.setText(guestsString);
+		String guestsString = Integer.toString(model.getNumberOfGuests());
+		guestsButton.setText(guestsString);		
 	}
 }
