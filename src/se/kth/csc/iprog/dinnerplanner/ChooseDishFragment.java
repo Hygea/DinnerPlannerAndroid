@@ -77,8 +77,24 @@ public class ChooseDishFragment extends Fragment {
 				dialog.setContentView(R.layout.dish);
 				dialog.setTitle("Dish Name...");
 				
-				TextView ingredients = (TextView) dialog.findViewById(R.id.ingredients);
-				ingredients.setText(R.string.ingredients);
+				DinnerModel model = ((DinnerPlannerApplication) getActivity().getApplicationContext()).getModel();
+				
+				Dish currentDish = model.getSelectedDish(ChooseDish.currentDishType);
+				Dish oldDish = currentDish;
+				if (currentDish != null) {
+					model.removeFromMenu(currentDish);
+				}
+				
+				// Ta bort redan sparad menyitem (TODO: Šven uppdatera visuellt)
+				
+				String pickedDish = rowItems.get(position).getTitle();
+			    Set<Dish> dishes = model.getDishesOfType(ChooseDish.currentDishType);
+				for (Dish d : dishes) {
+					if (pickedDish.equals(d.getName()))
+						if (d != oldDish)
+							model.addToMenu(d);
+				}
+				
 				
 				ImageView dishImage = (ImageView) dialog.findViewById(R.id.dishImage);
 				dishImage.setImageResource(R.drawable.meatballs);
