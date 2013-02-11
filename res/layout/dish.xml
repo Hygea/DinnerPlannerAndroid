@@ -5,23 +5,11 @@
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/dishName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/dishName"
-        android:text="@string/dishName"
-       	android:textSize="25sp"
-       	android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <ImageView
         android:id="@+id/dishImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/howTo"
-        android:layout_below="@+id/dishName"
         android:contentDescription="@string/dishPicture"
         android:src="@drawable/meatballs" />
 
@@ -49,8 +37,8 @@
         android:id="@+id/howTo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/dishImage"
-        android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:text="@string/howTo"
         android:textSize="15sp" />

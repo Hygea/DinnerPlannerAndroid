@@ -6,6 +6,7 @@ import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
+import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -73,9 +74,7 @@ public class ChooseDishFragment extends Fragment {
 					long id) {
 				/*Toast.makeText(getApplicationContext(), "Clicked: "+ rowItems.get(position).getTitle(),
 						Toast.LENGTH_SHORT).show();*/
-				final Dialog dialog = new Dialog(context);
-				dialog.setContentView(R.layout.dish);
-				dialog.setTitle("Dish Name...");
+
 				
 				DinnerModel model = ((DinnerPlannerApplication) getActivity().getApplicationContext()).getModel();
 				
@@ -87,31 +86,47 @@ public class ChooseDishFragment extends Fragment {
 				
 				// Ta bort redan sparad menyitem (TODO: Šven uppdatera visuellt)
 				
+				
 				String pickedDish = rowItems.get(position).getTitle();
 			    Set<Dish> dishes = model.getDishesOfType(ChooseDish.currentDishType);
 				for (Dish d : dishes) {
 					if (pickedDish.equals(d.getName()))
-						if (d != oldDish)
+						if (d != oldDish) {
 							model.addToMenu(d);
+							currentDish = d;
+						}
 				}
 				
+				final Dialog dialog = new Dialog(context);
+				dialog.setContentView(R.layout.dish);
+				dialog.setTitle(currentDish.getName());
+				
+				TextView ingredients = (TextView) dialog.findViewById(R.id.ingredients);
+				String ingredientsString = "";
+				for (Ingredient i : currentDish.getIngredients()) {
+					ingredientsString += (i.getQuantity() * model.getNumberOfGuests()) + " " + i.getUnit() + " " + i.getName() + "\n";
+					
+				}
+				ingredients.setText(ingredientsString);
 				
 				ImageView dishImage = (ImageView) dialog.findViewById(R.id.dishImage);
-				dishImage.setImageResource(R.drawable.meatballs);
+				String imageString = currentDish.getImage();
+				if (!imageString.contains("drawable/"))
+					imageString = "drawable/"+imageString;
+				Integer image = getResources().getIdentifier(imageString, null, getActivity().getApplicationContext().getPackageName());
+				dishImage.setImageResource(image);
 				
 				TextView howTo = (TextView) dialog.findViewById(R.id.howTo);
-				howTo.setText(R.string.howTo);
+				howTo.setText(currentDish.getDescription());
 				
 				Button backButton = (Button) dialog.findViewById(R.id.back);
 				
-//				backButton.setOnClickListener(new OnClickListener() {
-//
-//
-//					public void onClick(View view) {
-//						dialog.dismiss();
-//					}
-//
-//				});
+				backButton.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View view) {
+						dialog.dismiss();
+					}
+
+				});
 	 
 				dialog.show();
 			}
