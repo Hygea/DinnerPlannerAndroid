@@ -7,6 +7,8 @@ import java.util.Observer;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -29,6 +32,7 @@ public class ChooseDish extends FragmentActivity implements Observer {
 
 	public static int currentDishType = Dish.STARTER;
 	public static ArrayList<String> dishTitles;
+	Context context = this;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,7 +90,7 @@ public class ChooseDish extends FragmentActivity implements Observer {
 					rightButton.setVisibility(View.VISIBLE);
 					currentDishType--;
 					FragmentTransaction ft = fm.beginTransaction();
-					ft.replace(R.id.frame, new ChooseDishFragment()); 
+					ft.replace(R.id.frame, new ChooseDishFragment(context)); 
 					ft.commit();
 				}
 				else {
@@ -102,7 +106,7 @@ public class ChooseDish extends FragmentActivity implements Observer {
 				// Uppdatera listviewn i ChooseDishFragment genom att ladda om Fragmenten
 				if (currentDishType<=Dish.DESERT) { 
 					FragmentTransaction ft = fm.beginTransaction();
-					ft.replace(R.id.frame, new ChooseDishFragment());
+					ft.replace(R.id.frame, new ChooseDishFragment(context));
 					ft.commit();				  
 				}
 				else {
@@ -120,7 +124,7 @@ public class ChooseDish extends FragmentActivity implements Observer {
 		// Fšrsta fragmenten som laddas nŠr man startar ChooseDish-activityn
 		if (fragment == null) {
 			FragmentTransaction ft = fm.beginTransaction();
-			ft.add(R.id.frame, new ChooseDishFragment());
+			ft.add(R.id.frame, new ChooseDishFragment(context));
 			ft.commit();
 		}
 	}
